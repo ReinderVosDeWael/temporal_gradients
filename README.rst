@@ -1,8 +1,11 @@
+.. role:: matlab(code)
+   :language: matlab
+
 Microcircuit underpinnings and macroscale functional implications of temporal lobe connectivity gradients 
 ____________________________________
-This is the code accompanying the manuscript [CITATION TO BE ADDED]. It will allow you to reproduce the main figures of the manuscript. The BrainSpace toolbox [ADD LINK] is required for running the code herein. 
+This is the code accompanying the manuscript [CITATION TO BE ADDED]. It will allow you to reproduce the main figures of the manuscript. The BrainSpace toolbox (https://brainspace.readthedocs.io/) is required for running the code herein. 
 
-To start, simply download the data by running `temporal_gradients.download_data`. Next, the plots for, for example figure 1, can be produced by running `temporal_gradients.master_figure1`.
+To start, simply download the data by running :matlab:`temporal_gradients.download_data`. Next, the plots for, for example figure 1, can be produced by running :matlab:`temporal_gradients.master_figure1`.
 
 The contents of `figure_data.mat` are as follows:
     - bigbrain: the MPC gradients
