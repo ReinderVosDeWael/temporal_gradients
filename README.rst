@@ -1,1 +1,31 @@
+Microcircuit underpinnings and macroscale functional implications of temporal lobe connectivity gradients 
+____________________________________
+This is the code accompanying the manuscript [CITATION TO BE ADDED]. It will allow you to reproduce the main figures of the manuscript. The BrainSpace toolbox [ADD LINK] is required for running the code herein. 
+
+To start, simply download the data by running `temporal_gradients.download_data`. Next, the plots for, for example figure 1, can be produced by running `temporal_gradients.master_figure1`.
+
+The contents of `figure_data.mat` are as follows:
+    - bigbrain: the MPC gradients
+    - c69_20k: structure containing conte69 surfaces downsampled to 20000 vertices, indices for the downsampling, and a midline mask.
+    - connectivity_distance: connectivity distance of the temporal lobe
+    - connectivity_vector_3829: connectivity of the left temporal pole (vertex 3829)
+    - evo_data: functional homology index and cortical expansion of the temporal lobe.
+    - gm_hcp_discovery: GradientMaps object of the discovery dataset.
+    - include: vertices included in the yeo network analysis (overlap of vertices not in the midline and those included in the yeo networks).
+    - kfold_fc_r: subjectwise correlation between empirical and predicted functional connectivity in the discovery dataset.
+    - mesulam: mesulam map 
+    - microstructure: curvature, cortical thickness, and t1w/t2w intensity for the discovery dataset
+    - mics_fc_r: subjectwise correlation between empirical and predicted functional connectivity in the MICS dataset.
+    - node_strength: node strength of the temporal lobe
+    - r: vertexwise correlation between predicted and empirical data in the discovery dataset
+    - r_ho: vertexwise correlation between predicted and empirical data in the replication and MICS datasets
+    - repl_fc_r subjetwise correlation between empirical and predicted functional connectivity in the replication dataset.
+    - sc_mask: structural connectivity of the discovery dataset (midline masked out)
+    - sjh: parcellation used for the MPC gradient
+    - surf_lh: left hemispheric surface
+    - surf_rh: right hemispheric surface
+    - temporalLobe_msk: temporal lobe mask
+    - yeo: Yeo networks
+    - yeo_tl: Yeo networks in the temporal lobe.
+    - yeo_predicted: Predicted yeo networks in the discovery dataset of one of the folds.
 
