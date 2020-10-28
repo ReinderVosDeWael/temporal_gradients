@@ -31,7 +31,7 @@ for ii = 1:2
         else
             y = Y(end/2+1:end,jj);
         end
-        temporal_project.figure.metric_scatter_3d(gm.aligned{ii},y,clim(jj,:), ...
+        temporal_gradients.support.metric_scatter_3d(gm.aligned{ii},y,clim(jj,:), ...
             figure_dir + "/3d_scatter_" + ...
             side{ii} + "_" + type{jj} + ".png")
     end
@@ -41,7 +41,7 @@ function scatter_plots_2d(gm,Y,lim,figure_dir)
 side = ["left","right"];
 type = ["fhi","exp"];
 label = {'Functional Homology','Areal Expansion'};
-import temporal_project.analysis.eccentricity
+import temporal_gradients.support.eccentricity
 for ii = 1:2
     for jj = 1:size(Y,2)
         if ii == 1
@@ -49,7 +49,7 @@ for ii = 1:2
         else
             y = Y(end/2+1:end,jj);
         end
-        temporal_project.figure.metric_scatter(eccentricity(gm.aligned{ii}(:,1:3)), ...
+        temporal_gradients.support.metric_scatter(eccentricity(gm.aligned{ii}(:,1:3)), ...
             y,[0,5],lim(jj,:),'Eccentricity',label{jj}, true, ...
             figure_dir + "2d_scatter_" + ...
             side{ii} + "_" + type{jj} + ".png")
