@@ -14,16 +14,18 @@ The contents of `figure_data.mat` are as follows:
     - connectivity_vector_3829: connectivity of the left temporal pole (vertex 3829)
     - evo_data: functional homology index and cortical expansion of the temporal lobe.
     - gm_hcp_discovery: GradientMaps object of the discovery dataset.
+    - gm_hcp_replication: GradientMaps object of the replication dataset.
+    - gm_mics: GradientMaps object of the MICS dataset.
     - include: vertices included in the yeo network analysis (overlap of vertices not in the midline and those included in the yeo networks).
     - kfold_fc_r: subjectwise correlation between empirical and predicted functional connectivity in the discovery dataset.
     - mesulam: mesulam map 
-    - microstructure: curvature, cortical thickness, and t1w/t2w intensity for the discovery dataset
+    - microstructural_features: curvature, cortical thickness, and t1w/t2w intensities
     - mics_fc_r: subjectwise correlation between empirical and predicted functional connectivity in the MICS dataset.
     - node_strength: node strength of the temporal lobe
     - r: vertexwise correlation between predicted and empirical data in the discovery dataset
     - r_ho: vertexwise correlation between predicted and empirical data in the replication and MICS datasets
     - repl_fc_r subjetwise correlation between empirical and predicted functional connectivity in the replication dataset.
-    - sc_mask: structural connectivity of the discovery dataset (midline masked out)
+    - sc_mask: log-transformed (for visualization only!) structural connectivity of the discovery dataset.
     - sjh: parcellation used for the MPC gradient
     - surf_lh: left hemispheric surface
     - surf_rh: right hemispheric surface
