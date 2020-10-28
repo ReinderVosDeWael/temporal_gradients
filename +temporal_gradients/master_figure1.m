@@ -26,9 +26,9 @@ build_scree_plot(gm_hcp_discovery.lambda{1}, [figure_dir, 'left_scree.png']);
 build_gradient_surfaces([gm_hcp_discovery.aligned{1};gm_hcp_discovery.aligned{2}],surf_lh,surf_rh,temporalLobe_msk, figure_dir);
 build_gradient_in_euclidean(gm_hcp_discovery.aligned{1}(:,1:3),surf_lh,temporalLobe_msk,1, [figure_dir, 'color_left.png']);
 build_graph_scatters(gm_hcp_discovery,{connectivity_distance.hcp_discovery,node_strength.hcp_discovery}, ...
-    ["Connectivity Distance","Degree Centrality"], figure_dir);
+    ["Connectivity Distance","Node Strength"], figure_dir);
 build_graph_scatters_3d(gm_hcp_discovery,{connectivity_distance.hcp_discovery,node_strength.hcp_discovery}, ...
-    [10,20; 0.5e7,2e7],{parula,parula},["Connectivity Distance","Degree Centrality"], figure_dir);
+    [10,20; 0.5e7,2e7],{parula,parula},["Connectivity Distance","Node Strength"], figure_dir);
 end
 
 %% Figure builders
@@ -37,7 +37,9 @@ obj = plot_hemispheres(sc,{surf_lh,surf_rh});
 set(obj.handles.axes,'CLim',[-3.5 4.5]);
 obj.handles.cb.Ticks = [-3.5 4.5];
 obj.handles.cb.Limits = [-3.5 4.5];
-colormap([generateColorMap('hotcap');.7 .7 .7]);
+cmap = hot(256);
+cmap = cmap(1:220,:);
+colormap([cmap;.7 .7 .7]);
 coord = surf_lh.coord(:,3829);
 for ii = 1:2
     axes(obj.handles.axes(ii)); hold on 
@@ -59,7 +61,9 @@ axis square equal
 h.ax.Visible = 'off';
 h.ax.View = [90 90];
 h.ax.DataAspectRatio = [4 1 1];
-colormap(generateColorMap('hotcap'))
+cmap = hot(256);
+cmap = cmap(1:220,:);
+colormap([cmap;.7 .7 .7]);
 export_fig([figure_dir, 'matrix.png'],'-m2','-png');
 close(gcf);
 end
@@ -119,7 +123,7 @@ for hemi = 1:2
                 ylab = 'Connectivity Distance';
             else
                 ylim = [0 3.5]*10e6;
-                ylab = 'Degree Centrality';
+                ylab = 'Node Strength';
             end
             name = string(figure_dir) + ...
                 hemi_name(hemi) + "_" + modality_name(modality) +".png";
