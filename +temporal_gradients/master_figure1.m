@@ -20,8 +20,10 @@ figure_dir = [package_dir, '/figures/figure_1/'];
 if ~exist(figure_dir, 'dir')
     mkdir(figure_dir)
 end
+
 build_basic_connectivity_surface(connectivity_vector_3829,surf_lh,surf_rh, figure_dir);
 build_basic_connectivity_matrix(sc_mask,temporalLobe_msk,c69_20k.mask,figure_dir);
+build_affinity_matrix(sc_mask,temporalLobe_msk,c69_20k.mask,figure_dir);
 build_scree_plot(gm_hcp_discovery.lambda{1}, [figure_dir, 'left_scree.png']);
 build_gradient_surfaces([gm_hcp_discovery.aligned{1};gm_hcp_discovery.aligned{2}],surf_lh,surf_rh,temporalLobe_msk, figure_dir);
 build_gradient_in_euclidean(gm_hcp_discovery.aligned{1}(:,1:3),surf_lh,temporalLobe_msk,1, [figure_dir, 'color_left.png']);
@@ -67,9 +69,41 @@ colormap([cmap;.7 .7 .7]);
 export_fig([figure_dir, 'matrix.png'],'-m2','-png');
 close(gcf);
 end
+function build_affinity_matrix(sc,mask_temporal,mask_midline,figure_dir)
+
+% Left hemispheric connectivity
+sc_mask = sc(mask_midline,mask_temporal);
+sc_left = sc_mask(1:end/2,1:end/2);
+
+% Sparse connectivity
+sc_left(sc_left < prctile(sc_left,75)) = 0;
+
+% Affinity matrix
+cosine_similarity = 1-squareform(pdist(sc_left','cosine'));
+
+h.fig = figure('color','w');
+h.ax = axes();
+h.img = imagesc(cosine_similarity);
+h.cb = colorbar;
+set(h.ax                                , ...
+    'Box'               , 'off'         , ...
+    'DataAspectRatio'   ,  [1 1 1]      , ...
+    'PlotBoxAspectRatio', [1 1 1]       , ...
+    'Xtick'             , []            , ...
+    'YTick'             , []            , ...
+    'Visible'           , 'off'         ); 
+set(h.cb                                , ...
+    'Position'          , [ .85 .3 .03, .4], ...
+    'Ticks'             , [0 1]         , ...
+    'FontName'          , 'DroidSans'   , ...
+    'FontSize'          , 36            );
+export_fig([figure_dir, 'affinity.png'],'-m2','-png');
+
+end
 function build_scree_plot(lambda,name)
 h = scree_plot(lambda);
-set(h.axes,'XTick',[0 40],'YTick',[0 .5], 'FontName', 'DroidSans', 'FontSize', 22)
+set(h.axes,'XTick',[0 40],'YTick',[0 .35], 'FontName', 'DroidSans',  ...
+    'XLim', [0, 40], 'YLim', [0, .35], 'FontSize', 38)
 set(h.plot,'Marker','.','MarkerSize',25);
 export_fig(name,'-m2','-png');
 close(gcf);
